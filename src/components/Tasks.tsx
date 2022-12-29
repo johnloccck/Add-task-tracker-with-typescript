@@ -1,34 +1,27 @@
-const Tasks
-// : React.FC<{task}>
- = () => {
-    const tasks =[
-        {
-            id:1,
-            text:"Doctors",
-            day:"Feb 5th",
-            reminder: true
-        },
-        {
-            id:2,
-            text:"School",
-            day:"Marth 6th",
-            reminder: false
-        },
-        {
-            id:3,
-            text:"Market",
-            day:"Jun 7th",
-            reminder: true
-        }
-    ]
-    return(
+import Task from "./Task"
 
-        <>
-        {tasks.map((task)=>(
-            <h3>{task.text}</h3>
+type TasksProps = {
+    tasks: any[];
+    onDelete: (id:number) => void
+    onToggle: (id:number) => void
+  };
+  
+const Tasks: React.FC<TasksProps>= ({tasks, onDelete, onToggle}) => {
+    
+   
+    return(<>
+        {tasks.map((task: any)=>(
+         <Task 
+            key={task.id}
+            task={task}
+            onDelete={onDelete}
+            onToggle={onToggle}
+          
+         />
         ))}
         </>
     )
 }
 
 export default Tasks
+
